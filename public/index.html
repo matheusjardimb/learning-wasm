@@ -7,8 +7,11 @@
 <body>
 <h1>WASM Experiments</h1>
 <script>
+    // 2 pages: 2*64kb
+    const wasmMemory = new WebAssembly.Memory({initial: 2});
+
     const readMemoryString = (offset, length) => {
-        const strBuffer = new Uint8Array(wasm.instance.exports.memory.buffer, offset, length);
+        const strBuffer = new Uint8Array(wasmMemory.buffer, offset, length);
         const str = new TextDecoder().decode(strBuffer);
         console.log(str);
         window.dispatchEvent(new CustomEvent('wasmValue', {detail: str}));
@@ -21,7 +24,8 @@
     const imports = {
         env: {
             consoleNumLog: console.log,
-            consoleStringLog: readMemoryString
+            consoleStringLog: readMemoryString,
+            memory: wasmMemory
         }
     };
     WebAssembly.instantiateStreaming(fetch('/program.wasm'), imports).then(wasm => {

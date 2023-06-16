@@ -1,0 +1,38 @@
+(module
+ (type $FUNCSIG$vi (func (param i32)))
+ (type $FUNCSIG$vii (func (param i32 i32)))
+ (import "env" "consoleNumLog" (func $consoleNumLog (param i32)))
+ (import "env" "consoleStringLog" (func $consoleStringLog (param i32 i32)))
+ (import "env" "memory" (memory $0 2))
+ (table 0 anyfunc)
+
+ (data (i32.const 16) "Hello from C\00")
+ (export "memory" (memory $0))
+ (export "main" (func $main))
+ (export "getDoubleNumber" (func $getDoubleNumber))
+ (export "logDoubleNumber" (func $logDoubleNumber))
+ (export "greet" (func $greet))
+ (func $main (; 2 ;) (result i32)
+  (i32.const 42)
+ )
+ (func $getDoubleNumber (; 3 ;) (param $0 i32) (result i32)
+  (i32.shl
+   (get_local $0)
+   (i32.const 1)
+  )
+ )
+ (func $logDoubleNumber (; 4 ;) (param $0 i32)
+  (call $consoleNumLog
+   (i32.shl
+    (get_local $0)
+    (i32.const 1)
+   )
+  )
+ )
+ (func $greet (; 5 ;)
+  (call $consoleStringLog
+   (i32.const 16)
+   (i32.const 12)
+  )
+ )
+)
