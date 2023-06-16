@@ -16,5 +16,3 @@ void logDoubleNumber(int x) {
 void greet() {
   consoleStringLog("Hello from C");
 }
-
-
