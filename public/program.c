@@ -1,5 +1,7 @@
+#include <string.h>
+
 void consoleNumLog(int n);
-void consoleStringLog(char * msg);
+void consoleStringLog(char * offset, int length);
 
 int main() {
   return 42;
@@ -14,5 +16,6 @@ void logDoubleNumber(int x) {
 }
 
 void greet() {
-  consoleStringLog("Hello from C");
+  char * msg = "Hello from C";
+  consoleStringLog(msg, strlen(msg));
 }

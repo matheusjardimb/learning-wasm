@@ -7,10 +7,21 @@
 <body>
 <h1>WASM Experiments</h1>
 <script>
+    const readMemoryString = (offset, length) => {
+        const strBuffer = new Uint8Array(wasm.instance.exports.memory.buffer, offset, length);
+        const str = new TextDecoder().decode(strBuffer);
+        console.log(str);
+        window.dispatchEvent(new CustomEvent('wasmValue', {detail: str}));
+    }
+
+    window.addEventListener('wasmValue', str => {
+        console.log('Received', str);
+    });
+
     const imports = {
         env: {
             consoleNumLog: console.log,
-            consoleStringLog: console.log
+            consoleStringLog: readMemoryString
         }
     };
     WebAssembly.instantiateStreaming(fetch('/program.wasm'), imports).then(wasm => {
