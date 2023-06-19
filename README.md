@@ -14,3 +14,4 @@ WebAssembly experiments from [udemy.com/course/webassembly-emscripten](https://u
 ### Emscripten
 
 - https://emscripten.org/docs/getting_started/downloads.html
+- https://emscripten.org/docs/optimizing/Optimizing-Code.html
