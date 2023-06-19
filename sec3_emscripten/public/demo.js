@@ -1016,7 +1016,7 @@ function dbg(text) {
 // end include: runtime_debug.js
 // === Body ===
 
-function jsFunction(n) { console.log("Call from EM_JS" + n); }
+function jsFunction(n) { console.log("Call from EM_JS " + n); }
 
 
 
@@ -2251,6 +2251,8 @@ var asm = createWasm();
 /** @type {function(...*):?} */
 var ___wasm_call_ctors = createExportWrapper("__wasm_call_ctors");
 /** @type {function(...*):?} */
+var _getStr = Module["_getStr"] = createExportWrapper("getStr");
+/** @type {function(...*):?} */
 var _getNum = Module["_getNum"] = createExportWrapper("getNum");
 /** @type {function(...*):?} */
 var _getDoubleNum = Module["_getDoubleNum"] = createExportWrapper("getDoubleNum");
@@ -2297,8 +2299,8 @@ var _emscripten_stack_get_current = function() {
 
 /** @type {function(...*):?} */
 var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
-var ___start_em_js = Module['___start_em_js'] = 66376;
-var ___stop_em_js = Module['___stop_em_js'] = 66427;
+var ___start_em_js = Module['___start_em_js'] = 66384;
+var ___stop_em_js = Module['___stop_em_js'] = 66436;
 
 // include: postamble.js
 // === Auto-generated postamble setup entry stuff ===
