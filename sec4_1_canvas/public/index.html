@@ -22,19 +22,23 @@
 
 
       // Render circles on canvas
-      const render = () => {
+      const render = ( dataLength, circleStructSize ) => {
 
-        // Get circle data from C
-        let circles = _getCircles()
-        console.log(`Got ${circles} circles`)
+        // Get circle data from C - Typed Array
+        let circles = new Int32Array( Module.buffer, _getCircles(), dataLength )
 
-        // Draw circle
-        context.beginPath()
-        context.arc(300, 300, 150, 0, 2*Math.PI, false)
-        context.fillStyle = 'dodgerblue'
-        context.fill()
+        // Loop data and get circle chunks
+        for( let i = 0; i < circles.length; i+=circleStructSize ) {
 
-        console.log('rendered')
+          // Get circle data chunk
+          let circle = circles.slice( i, i+circleStructSize )
+
+          // Draw circle
+          context.beginPath()
+          context.arc(circle[0], circle[1], circle[2], 0, 2*Math.PI, false)
+          context.fillStyle = `rgba(${circle[3]},${circle[4]},${circle[5]},0.75)`
+          context.fill()
+        }
 
         // Request next animation frame and re-render with updated circles
         // window.requestAnimationFrame( render )
