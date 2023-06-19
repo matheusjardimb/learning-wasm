@@ -25,7 +25,10 @@
       const render = ( dataLength, circleStructSize ) => {
 
         // Get circle data from C - Typed Array
-        let circles = new Int32Array( Module.buffer, _getCircles(), dataLength )
+        let circles = new Int32Array( Module.buffer, _getCircles( canvas.width, canvas.height ), dataLength )
+
+        // Clear existing canvas to re-render
+        context.clearRect( 0, 0, canvas.width, canvas.height )
 
         // Loop data and get circle chunks
         for( let i = 0; i < circles.length; i+=circleStructSize ) {
@@ -41,7 +44,9 @@
         }
 
         // Request next animation frame and re-render with updated circles
-        // window.requestAnimationFrame( render )
+        window.requestAnimationFrame( () => {
+          render( dataLength, circleStructSize )
+        })
       }
 
     </script>
