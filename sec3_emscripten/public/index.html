@@ -14,12 +14,15 @@
     const getJSNum = () => 123;
     const getJSStr = () => 'Hi there';
 
-    // UTF8ToString(_getStr());
-
     console.log(Module);
 
     // Stops for debugging when dev tools is open
+
     // _getNumDebugged()
+    Module['onRuntimeInitialized'] = () => {
+        console.log('onRuntimeInitialized');
+        console.log(UTF8ToString(_getStr()));
+    }
 </script>
 </body>
 </html>
