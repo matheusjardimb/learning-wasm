@@ -7,12 +7,23 @@
 <body>
 <h1>WASM Experiments</h1>
 <script>
-    WebAssembly.instantiateStreaming(fetch('/program.wasm')).then(wasm => {
+    const imports = {
+        env: {
+            consoleNumLog: console.log,
+            consoleStringLog: console.log
+        }
+    };
+    WebAssembly.instantiateStreaming(fetch('/program.wasm'), imports).then(wasm => {
         console.log('WASM ready');
         window.wasm = wasm;
+
         console.log(wasm.instance.exports.main())
         console.log(wasm.instance.exports.getDoubleNumber(3))
         console.log(WebAssembly.Module.exports(wasm.module))
+
+        wasm.instance.exports.logDoubleNumber(4)
+        wasm.instance.exports.greet()
+        console.log(WebAssembly.Module.imports(wasm.module))
     })
 </script>
 </body>
