@@ -2,6 +2,12 @@
 #include <string.h>
 #include <emscripten.h>
 
+char * str = "My string";
+
+char * getStr(){
+    return str;
+}
+
 EM_JS(void, jsFunction, (int n), {
     console.log("Call from EM_JS " + n);
 } )
