@@ -33,6 +33,12 @@ int getNum() {
   return 2;
 }
 
+int getNumDebugged() {
+  emscripten_debugger();
+  emscripten_log(EM_LOG_WARN, "emscripten_log\n");
+  return 5;
+}
+
 int getDoubleNum(int x) {
   return x * 2;
 }
