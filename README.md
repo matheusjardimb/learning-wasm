@@ -16,3 +16,4 @@ WebAssembly experiments from [udemy.com/course/webassembly-emscripten](https://u
 - https://emscripten.org/docs/getting_started/downloads.html
 - https://emscripten.org/docs/optimizing/Optimizing-Code.html
 - https://emscripten.org/docs/api_reference/emscripten.h.html#logging-utilities
+- https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html
